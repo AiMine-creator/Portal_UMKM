@@ -105,8 +105,20 @@ footer {
   <h2>🖼️ Text → Image</h2>
   <p>Tulis deskripsi gambar yang kamu inginkan lalu hasilkan gambar dari AI.</p>
   <textarea id="imgPrompt" rows="3"></textarea><br />
-  <button onclick="generateImage()">Generate Gambar</button>
-  <div id="imgResult" style="margin-top: 10px"></div>
+ <button onclick="generateImage(); updateStats('image')">Generate</button>
+ <script>
+function updateStats(type) {
+  const stats = JSON.parse(localStorage.getItem('aimine_stats')) || { image:0, copy:0, video:0 };
+  stats[type]++;
+  localStorage.setItem('aimine_stats', JSON.stringify(stats));
+}
+
+// Contoh pemanggilan tiap kali user generate
+// updateStats('image')
+// updateStats('copy')
+// updateStats('video')
+</script>
+ <div id="imgResult" style="margin-top: 10px"></div>
 </div>
 
 <!-- IMAGE TO BETTER IMAGE -->
